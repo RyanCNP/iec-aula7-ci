@@ -4,9 +4,14 @@ import js from "@eslint/js";
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
-  // arquivos/paths a ignorar
+  // arquivos/paths a ignorar completamente
   {
-    ignores: ["node_modules/**", "coverage/**", "dist/**"]
+    ignores: [
+      "node_modules/**",
+      "coverage/**",
+      "dist/**",
+      "tests/**/*.test.js"
+    ]
   },
 
   // regras recomendadas do ESLint
@@ -34,7 +39,7 @@ export default [
     }
   },
 
-  // ajustes específicos para testes
+  // ajustes específicos para testes (caso queira manter regras específicas para outros testes)
   {
     files: ["tests/**/*.test.js"],
     rules: {
