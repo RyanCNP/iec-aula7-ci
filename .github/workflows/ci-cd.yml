@@ -184,7 +184,7 @@ jobs:
               username: ${{ secrets.SMTP_USER }}
               password: ${{ secrets.SMTP_PASS }}
               subject: "Falha pipeline Actions"
-              to: fe.dsm.vot.001@gmail.com
+              to: ${{ secrets.SMTP_USER }}
               from: ${{ secrets.SMTP_USER }}
               body: |
                 A execução falhou.
