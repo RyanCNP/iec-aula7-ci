@@ -30,8 +30,7 @@ jobs:
 
       # --- Executa testes ---
       - name: Testes
-        run: npm asdasd
-
+        run: npm test -- --coverage
 
       # --- Criar nova tag inicial caso não exista ---
       - name: Criar nova tag caso não exista
@@ -173,6 +172,10 @@ jobs:
           if git rev-parse "v${NEW_VERSION}" >/dev/null 2>&1; then
             git push origin "v${NEW_VERSION}"
           fi
+
+          # Simular Falha
+          - name: Step de teste de falha
+            run: exit 1
 
           # Envio de e-mail EM CASO DE FALHA no pipeline
            - name: Enviar email se falhar
