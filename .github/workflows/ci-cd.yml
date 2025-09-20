@@ -30,6 +30,7 @@ jobs:
 
       # --- Executa testes ---
       - name: Testes
+        run: npm asdasd
 
 
       # --- Criar nova tag inicial caso não exista ---
