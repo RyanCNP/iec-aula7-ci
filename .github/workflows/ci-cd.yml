@@ -173,26 +173,26 @@ jobs:
             git push origin "v${NEW_VERSION}"
           fi
 
-          # Simular Falha
-          - name: Step de teste de falha
-            run: exit 1
+      # Simular Falha
+      - name: Step de teste de falha
+        run: exit 1
 
-          # Envio de e-mail EM CASO DE FALHA no pipeline
-           - name: Enviar email se falhar
-            if: failure()
-            uses: dawidd6/action-send-mail@v3
-            with:
-              server_address: smtp.gmail.com
-              server_port: 465
-              username: ${{ secrets.SMTP_USER }}
-              password: ${{ secrets.SMTP_PASS }}
-              subject: "Falha pipeline Actions"
-              to: ${{ secrets.SMTP_USER }}
-              from: ${{ secrets.SMTP_USER }}
-              body: |
-                A execução falhou.
-                Repositório: ${{ github.repository }}
-                Commit: ${{ github.sha }}
-                Workflow: ${{ github.workflow }}
-                Job: ${{ github.job }}
-                Veja os logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      # Envio de e-mail EM CASO DE FALHA no pipeline
+      - name: Enviar email se falhar
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.SMTP_USER }}
+          password: ${{ secrets.SMTP_PASS }}
+          subject: "Falha pipeline Actions"
+          to: ${{ secrets.SMTP_USER }}
+          from: ${{ secrets.SMTP_USER }}
+          body: |
+            A execução falhou.
+            Repositório: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+            Workflow: ${{ github.workflow }}
+            Job: ${{ github.job }}
+            Veja os logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
